@@ -4,9 +4,9 @@ import color_processing
 import numpy as np
 import sys
 
-visualize = int(sys.argv[1])
+image = sys.argv[1]
+visualize = int(sys.argv[2])
 
-image = "../darknet/data/HopkinsAIBig/123245088834.jpg"
 im = cv2.imread(image)
 led_color, regions = color_processing.color(im, visualize)
 
@@ -30,6 +30,11 @@ for x,y,width,height in regions:
     color = (0,0,255,0)
     cv2.rectangle(im, pt1, pt2, color, 2) 
 
+print("Total number of LEDs : %d" % (len(regions)))
+# still detects extra LEDs, can filter out by size or by first detecting where robot is
+
+
+im = cv2.resize(im, (640, 480))
 cv2.imshow("Final LED locations", im)
 cv2.waitKey(0)
 

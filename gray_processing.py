@@ -18,7 +18,7 @@ def gray(img, visualize):
     led_img, regions = leds.find_leds(thresh_img, img, visualize)
     centers = leds.leds_positions(regions)
 
-    print("Total number of LEDs : %d" % (len(centers)))
+    # print("Total number of LEDs : %d" % (len(centers)))
     # print("LED positions :")
     # for c in centers:
         # print "x : %d; y : %d" % (c[0], c[1])

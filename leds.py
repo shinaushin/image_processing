@@ -8,7 +8,6 @@ def leds_positions(regions):
     return centers
 
 def find_leds(thresh_img, img, visualize):
-    print(visualize)
     contours, hierarchy = cv2.findContours(thresh_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     regions = []

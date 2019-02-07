@@ -27,7 +27,7 @@ def color(image, visualize):
     led_img, regions = leds.find_leds(v, image, visualize)
     centers = leds.leds_positions(regions)
 
-    print("Total number of LEDs: %d" % (len(centers)))
+    # print("Total number of LEDs: %d" % (len(centers)))
 
     # cv2.imshow("With LEDs", led_img)
     # cv2.waitKey(0)
