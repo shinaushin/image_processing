@@ -1,8 +1,20 @@
+# gray_processing.py
+# @author Austin Shin
+
 import sys
 import leds
 import cv2
 
-def extract_bright(grey_img, histogram=False):
+def extract_bright(grey_img):
+    """
+    Thresholds image based on brightness
+
+    Params:
+        grey_img: grayscale image
+
+    Returns:
+        thresholded image
+    """
     [minVal, maxVal, minLoc, maxLoc] = cv2.minMaxLoc(grey_img)
     margin = 0.8
 
@@ -12,6 +24,16 @@ def extract_bright(grey_img, histogram=False):
     return thresh_img
 
 def gray(img, visualize):
+    """
+    Converts image to grayscale and finds red LEDs based on brightness and color
+
+    Params:
+        img: source image
+        visualize: boolean option for visualization 
+
+    Returns:
+        image with LEDs extracted and LED locations
+    """
     grey_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     thresh_img = extract_bright(grey_img)
 
@@ -26,6 +48,4 @@ def gray(img, visualize):
     # cv2.imshow("With LEDs", led_img)
     # cv2.waitKey(0)
 
-    return led_img, regions
-
-
+    return led_img, centers

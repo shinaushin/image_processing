@@ -1,8 +1,22 @@
+# color_processing.py
+# @author Austin Shin
+
 import numpy as np
 import cv2
 import leds
 
 def create_hue_mask(image, lower_color, upper_color):
+    """
+    Applies hue mask to image
+
+    Params:
+        image: source img
+        lower_color: lower bound of mask
+        upper_color: upper bound of mask
+    
+    Returns:
+        masked image
+    """
     lower = np.array(lower_color, np.uint8)
     upper = np.array(upper_color, np.uint8)
 
@@ -11,6 +25,16 @@ def create_hue_mask(image, lower_color, upper_color):
     return output_image
 
 def color(image, visualize):
+    """
+    Isolates LEDs in image and finds coordinates
+
+    Params:
+        image: source img
+        visualize: show img with isolated LEDs
+    
+    Returns:
+        image with isolated LEDs and LED locations
+    """
     blur_image = cv2.medianBlur(image, 3)
     hsv_image = cv2.cvtColor(blur_image, cv2.COLOR_BGR2HSV)
 
@@ -33,4 +57,3 @@ def color(image, visualize):
     # cv2.waitKey(0)
 
     return led_img, regions
-

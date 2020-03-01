@@ -1,6 +1,18 @@
+# leds.py
+# @author Austin Shin
+
 import cv2
 
 def leds_positions(regions):
+    """
+    Calculates center of rectangular region
+
+    Params:
+        region: list of rectangular box coordinates
+
+    Returns:
+        center of rectangular regions
+    """
     centers = []
     for x,y,width,height in regions:
         centers.append([x+(width/2),y+(height/2)])
@@ -8,6 +20,17 @@ def leds_positions(regions):
     return centers
 
 def find_leds(thresh_img, img, visualize):
+    """
+    Finds contours of possible LED locations
+
+    Params:
+        thresh_img: thresholded image
+        img: original image for visualization
+        visualize: boolean option for visualization
+
+    Returns:
+        annotated image, LED regions
+    """
     contours, hierarchy = cv2.findContours(thresh_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     regions = []
